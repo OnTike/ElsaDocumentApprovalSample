@@ -1,0 +1,111 @@
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__filter_Hashes_0='?' (DbType = Object), @__filter_WorkflowInstanceId_1='?'], CommandType='Text', CommandTimeout='120']
+      SELECT b."BookmarkId", b."ActivityInstanceId", b."ActivityTypeName", b."CorrelationId", b."CreatedAt", b."Hash", b."SerializedMetadata", b."SerializedPayload", b."WorkflowInstanceId"
+      FROM "Elsa"."Bookmarks" AS b
+      WHERE b."Hash" = ANY (@__filter_Hashes_0) AND b."WorkflowInstanceId" = @__filter_WorkflowInstanceId_1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@__filter_Hashes_0='?' (DbType = Object), @__filter_WorkflowInstanceId_1='?'], CommandType='Text', CommandTimeout='120']
+      DELETE FROM "Elsa"."Bookmarks" AS b
+      WHERE b."Hash" = ANY (@__filter_Hashes_0) AND b."WorkflowInstanceId" = @__filter_WorkflowInstanceId_1
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      System.Exception: Lost an owner context
+         at Elsa.Workflows.Services.WorkflowStateExtractor.ExtractCompletionCallbacks(WorkflowState state, WorkflowExecutionContext workflowExecutionContext)
+         at Elsa.Workflows.Services.WorkflowStateExtractor.Extract(WorkflowExecutionContext workflowExecutionContext)
+         at Elsa.Workflows.Services.WorkflowRunner.RunAsync(WorkflowExecutionContext workflowExecutionContext)
+         at Elsa.Workflows.Services.WorkflowRunner.RunAsync(WorkflowGraph workflowGraph, WorkflowState workflowState, RunWorkflowOptions options, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.WorkflowHost.ResumeWorkflowAsync(ResumeWorkflowHostParams params, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowAsync(String workflowInstanceId, ResumeWorkflowRuntimeParams options)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowAsync(String workflowInstanceId, ResumeWorkflowRuntimeParams options)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowsAsync(IEnumerable`1 bookmarks, ResumeWorkflowRuntimeParams runtimeParams)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowsAsync(String activityTypeName, Object bookmarkPayload, TriggerWorkflowsOptions options)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowInbox.ResumeWorkflowsSynchronouslyAsync(WorkflowInboxMessage message, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowInbox.BroadcastAsync(WorkflowInboxMessage message, BroadcastWorkflowInboxMessageOptions options, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Handlers.ReadWorkflowInboxMessage.HandleAsync(WorkflowInboxMessageReceived notification, CancellationToken cancellationToken)
+         at Elsa.Mediator.PublishingStrategies.SequentialProcessingStrategy.PublishAsync(NotificationStrategyContext context)
+         at Elsa.Mediator.Middleware.Notification.Components.NotificationHandlerInvokerMiddleware.InvokeAsync(NotificationContext context)
+         at Elsa.Mediator.Middleware.Notification.NotificationPipeline.ExecuteAsync(NotificationContext context)
+         at Elsa.Mediator.Services.DefaultMediator.SendAsync(INotification notification, IEventPublishingStrategy strategy, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowInbox.SubmitAsync(NewWorkflowInboxMessage newMessage, WorkflowInboxMessageDeliveryParams params, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.EventPublisher.PublishInternalAsync(String eventName, Boolean dispatchAsynchronously, String correlationId, String workflowInstanceId, String activityInstanceId, Object payload, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.EventPublisher.PublishAsync(String eventName, String correlationId, String workflowInstanceId, String activityInstanceId, Object payload, CancellationToken cancellationToken)     
+         at Elsa.Workflows.Api.Endpoints.Events.TriggerPublic.Trigger.HandleAsync(CancellationToken cancellationToken)
+         at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+         at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+         at Elsa.Http.Middleware.HttpWorkflowsMiddleware.InvokeAsync(HttpContext httpContext, IServiceProvider serviceProvider)
+         at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+         at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+         at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+warn: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[2]
+      The response has already started, the error page middleware will not be executed.
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      System.Exception: Lost an owner context
+         at Elsa.Workflows.Services.WorkflowStateExtractor.ExtractCompletionCallbacks(WorkflowState state, WorkflowExecutionContext workflowExecutionContext)
+         at Elsa.Workflows.Services.WorkflowStateExtractor.Extract(WorkflowExecutionContext workflowExecutionContext)
+         at Elsa.Workflows.Services.WorkflowRunner.RunAsync(WorkflowExecutionContext workflowExecutionContext)
+         at Elsa.Workflows.Services.WorkflowRunner.RunAsync(WorkflowGraph workflowGraph, WorkflowState workflowState, RunWorkflowOptions options, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.WorkflowHost.ResumeWorkflowAsync(ResumeWorkflowHostParams params, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowAsync(String workflowInstanceId, ResumeWorkflowRuntimeParams options)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowAsync(String workflowInstanceId, ResumeWorkflowRuntimeParams options)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowsAsync(IEnumerable`1 bookmarks, ResumeWorkflowRuntimeParams runtimeParams)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowsAsync(String activityTypeName, Object bookmarkPayload, TriggerWorkflowsOptions options)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowInbox.ResumeWorkflowsSynchronouslyAsync(WorkflowInboxMessage message, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowInbox.BroadcastAsync(WorkflowInboxMessage message, BroadcastWorkflowInboxMessageOptions options, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Handlers.ReadWorkflowInboxMessage.HandleAsync(WorkflowInboxMessageReceived notification, CancellationToken cancellationToken)
+         at Elsa.Mediator.PublishingStrategies.SequentialProcessingStrategy.PublishAsync(NotificationStrategyContext context)
+         at Elsa.Mediator.Middleware.Notification.Components.NotificationHandlerInvokerMiddleware.InvokeAsync(NotificationContext context)
+         at Elsa.Mediator.Middleware.Notification.NotificationPipeline.ExecuteAsync(NotificationContext context)
+         at Elsa.Mediator.Services.DefaultMediator.SendAsync(INotification notification, IEventPublishingStrategy strategy, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowInbox.SubmitAsync(NewWorkflowInboxMessage newMessage, WorkflowInboxMessageDeliveryParams params, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.EventPublisher.PublishInternalAsync(String eventName, Boolean dispatchAsynchronously, String correlationId, String workflowInstanceId, String activityInstanceId, Object payload, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.EventPublisher.PublishAsync(String eventName, String correlationId, String workflowInstanceId, String activityInstanceId, Object payload, CancellationToken cancellationToken)     
+         at Elsa.Workflows.Api.Endpoints.Events.TriggerPublic.Trigger.HandleAsync(CancellationToken cancellationToken)
+         at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+         at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+         at Elsa.Http.Middleware.HttpWorkflowsMiddleware.InvokeAsync(HttpContext httpContext, IServiceProvider serviceProvider)
+         at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+         at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+         at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+warn: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[2]
+      The response has already started, the error page middleware will not be executed.
+fail: Microsoft.AspNetCore.Server.Kestrel[13]
+      Connection id "0HN8JIOHE5K4O", Request id "0HN8JIOHE5K4O:00000005": An unhandled exception was thrown by the application.
+      System.Exception: Lost an owner context
+         at Elsa.Workflows.Services.WorkflowStateExtractor.ExtractCompletionCallbacks(WorkflowState state, WorkflowExecutionContext workflowExecutionContext)
+         at Elsa.Workflows.Services.WorkflowStateExtractor.Extract(WorkflowExecutionContext workflowExecutionContext)
+         at Elsa.Workflows.Services.WorkflowRunner.RunAsync(WorkflowExecutionContext workflowExecutionContext)
+         at Elsa.Workflows.Services.WorkflowRunner.RunAsync(WorkflowGraph workflowGraph, WorkflowState workflowState, RunWorkflowOptions options, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.WorkflowHost.ResumeWorkflowAsync(ResumeWorkflowHostParams params, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowAsync(String workflowInstanceId, ResumeWorkflowRuntimeParams options)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowAsync(String workflowInstanceId, ResumeWorkflowRuntimeParams options)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowsAsync(IEnumerable`1 bookmarks, ResumeWorkflowRuntimeParams runtimeParams)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowRuntime.ResumeWorkflowsAsync(String activityTypeName, Object bookmarkPayload, TriggerWorkflowsOptions options)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowInbox.ResumeWorkflowsSynchronouslyAsync(WorkflowInboxMessage message, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowInbox.BroadcastAsync(WorkflowInboxMessage message, BroadcastWorkflowInboxMessageOptions options, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Handlers.ReadWorkflowInboxMessage.HandleAsync(WorkflowInboxMessageReceived notification, CancellationToken cancellationToken)
+         at Elsa.Mediator.PublishingStrategies.SequentialProcessingStrategy.PublishAsync(NotificationStrategyContext context)
+         at Elsa.Mediator.Middleware.Notification.Components.NotificationHandlerInvokerMiddleware.InvokeAsync(NotificationContext context)
+         at Elsa.Mediator.Middleware.Notification.NotificationPipeline.ExecuteAsync(NotificationContext context)
+         at Elsa.Mediator.Services.DefaultMediator.SendAsync(INotification notification, IEventPublishingStrategy strategy, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.DefaultWorkflowInbox.SubmitAsync(NewWorkflowInboxMessage newMessage, WorkflowInboxMessageDeliveryParams params, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.EventPublisher.PublishInternalAsync(String eventName, Boolean dispatchAsynchronously, String correlationId, String workflowInstanceId, String activityInstanceId, Object payload, CancellationToken cancellationToken)
+         at Elsa.Workflows.Runtime.Services.EventPublisher.PublishAsync(String eventName, String correlationId, String workflowInstanceId, String activityInstanceId, Object payload, CancellationToken cancellationToken)     
+         at Elsa.Workflows.Api.Endpoints.Events.TriggerPublic.Trigger.HandleAsync(CancellationToken cancellationToken)
+         at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+         at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+         at Elsa.Http.Middleware.HttpWorkflowsMiddleware.InvokeAsync(HttpContext httpContext, IServiceProvider serviceProvider)
+         at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+         at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+         at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
